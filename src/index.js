@@ -13,9 +13,21 @@ const typeDefs = `
     }
 `
 
+let links = [{
+    id: 'link-0',
+    url: 'www.howtographql.com',
+    description: 'Fullstack tutorial for graphql'
+}]
+
 const resolvers = {
     Query: {
-        info: () => null,
+        info: () => `This is the API of a Hackernews Clone`,
+        feed: () => links,
+    },
+    Link: {
+        id: (root) => root.id,
+        description: (root) => root.description,
+        url: (root) => root.url,
     }
 }
 
