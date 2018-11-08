@@ -10,7 +10,9 @@ let idCount = links.length
 const resolvers = {
     Query: {
         info: () => `This is the API of a Hackernews Clone`,
-        feed: () => links,
+        feed: (root, args, context, info) => {
+            return context.db.query.links({}, info)
+        },
     },
     // Link: {
     //     id: (root) => root.id,
@@ -18,14 +20,13 @@ const resolvers = {
     //     url: (root) => root.url,
     // }
     Mutation: {
-        post: (root, args) => {
-            const link = {
-                id: `link-${idCount++}`,
-                description: args.description,
-                url: args.url,
-            }
-            links.push(link)
-            return link
+        post: (root, args, context, info) => {
+            return context.db.mutation.createLink({
+                data: {
+                    url: args.url,
+                    description: args.description,
+                }
+            }, info)
         }
     },
 }
