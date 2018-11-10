@@ -1,3 +1,5 @@
 # howtographql-tuts
 
-Learning GraphQL from [hotographql](https://www.howtographql.com/)
+Learning GraphQL from [howtographql](https://www.howtographql.com/)
+
+Tutorials are located in non-master branches
